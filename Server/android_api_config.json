@@ -1,0 +1,247 @@
+{
+  "api_config": {
+    "base_url": "http://YOUR_IP:3000/api",
+    "base_url_emulator": "http://10.0.2.2:3000/api",
+    "base_url_production": "https://your-domain.com/api",
+    "note": "Thay YOUR_IP bằng IP thực của máy tính (chạy: node get-ip.js hoặc ipconfig). Android không thể dùng localhost!",
+    "timeout": 30000,
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  },
+  "endpoints": {
+    "user": {
+      "create": {
+        "method": "POST",
+        "path": "/api/user"
+      }
+    },
+    "songs": {
+      "get_all": {
+        "method": "GET",
+        "path": "/api/songs"
+      },
+      "get_by_playlist": {
+        "method": "GET",
+        "path": "/api/songs/playlist/{playlistId}"
+      },
+      "get_by_topic": {
+        "method": "GET",
+        "path": "/api/songs/topic/{topicId}"
+      },
+      "get_by_album": {
+        "method": "GET",
+        "path": "/api/songs/album/{albumId}"
+      },
+      "get_loved": {
+        "method": "GET",
+        "path": "/api/songs/love/{userId}"
+      },
+      "add_to_love": {
+        "method": "POST",
+        "path": "/api/song/love"
+      },
+      "remove_from_love": {
+        "method": "DELETE",
+        "path": "/api/song/love/{songLoveId}"
+      }
+    },
+    "playlists": {
+      "get_all": {
+        "method": "GET",
+        "path": "/api/playlists"
+      },
+      "get_mood_today": {
+        "method": "GET",
+        "path": "/api/playlists/mood/today"
+      },
+      "get_by_user": {
+        "method": "GET",
+        "path": "/api/playlists/{userId}"
+      },
+      "get_loved": {
+        "method": "GET",
+        "path": "/api/playlists/love/{userId}"
+      },
+      "get_songs": {
+        "method": "GET",
+        "path": "/api/playlists/songs/{playlistUserId}"
+      },
+      "create": {
+        "method": "POST",
+        "path": "/api/playlist/user"
+      },
+      "add_song": {
+        "method": "POST",
+        "path": "/api/playlist/user/song"
+      },
+      "add_to_love": {
+        "method": "POST",
+        "path": "/api/playlist/user/love"
+      },
+      "delete_user_playlist": {
+        "method": "DELETE",
+        "path": "/api/playlistsUser"
+      },
+      "delete_loved_playlist": {
+        "method": "DELETE",
+        "path": "/api/playlistsLove"
+      }
+    },
+    "albums": {
+      "get_new": {
+        "method": "GET",
+        "path": "/api/albums/new"
+      },
+      "get_loved": {
+        "method": "GET",
+        "path": "/api/albums/love"
+      }
+    },
+    "search": {
+      "search": {
+        "method": "GET",
+        "path": "/api/search/{keyword}"
+      },
+      "get_all_names": {
+        "method": "GET",
+        "path": "/api/search/all/name"
+      }
+    },
+    "music_videos": {
+      "get_all": {
+        "method": "GET",
+        "path": "/api/musics/video"
+      },
+      "get_excluding": {
+        "method": "GET",
+        "path": "/api/musics/video/{musicVideoId}"
+      }
+    },
+    "lyrics": {
+      "get_by_song": {
+        "method": "GET",
+        "path": "/api/lyrics/{songId}"
+      }
+    },
+    "topics": {
+      "get_all": {
+        "method": "GET",
+        "path": "/api/topics"
+      },
+      "get_by_category": {
+        "method": "GET",
+        "path": "/api/topics/categories/{categoryId}"
+      }
+    },
+    "categories": {
+      "get_all": {
+        "method": "GET",
+        "path": "/api/categories"
+      }
+    },
+    "follow": {
+      "follow_artist": {
+        "method": "POST",
+        "path": "/api/follow"
+      },
+      "check_followed": {
+        "method": "GET",
+        "path": "/api/followed/{userId}/{artistId}"
+      },
+      "get_quantity": {
+        "method": "GET",
+        "path": "/api/follow/quantity/{userId}"
+      },
+      "get_followed_artists": {
+        "method": "GET",
+        "path": "/api/follows/{userId}"
+      },
+      "unfollow": {
+        "method": "DELETE",
+        "path": "/api/follow/{userId}/{artistId}"
+      }
+    },
+    "song_rank": {
+      "get_rank": {
+        "method": "GET",
+        "path": "/api/songs/rank/listen"
+      }
+    },
+    "song_again": {
+      "get_history": {
+        "method": "GET",
+        "path": "/api/songs/Again/{id}"
+      },
+      "add_to_history": {
+        "method": "POST",
+        "path": "/api/song/again"
+      }
+    },
+    "deeplink": {
+      "get_deeplink": {
+        "method": "GET",
+        "path": "/api/getDeeplink"
+      }
+    }
+  },
+  "android_app_links": {
+    "package_name": "com.example.musicapp",
+    "sha256_fingerprint": "8D:D1:06:52:C0:41:BF:4B:77:7E:C5:4B:F6:5E:34:F2:22:82:37:E4:C8:08:5F:3B:88:29:B7:27:D0:84:6F:77",
+    "assetlinks_url": "/.well-known/assetlinks.json"
+  },
+  "response_format": {
+    "success": {
+      "status": 200,
+      "data_field": "varies_by_endpoint"
+    },
+    "error": {
+      "status": "400",
+      "error_field": "error or message"
+    }
+  },
+  "data_models": {
+    "song": {
+      "song_id": "int",
+      "song_name": "string",
+      "song_image": "string (URL)",
+      "song_url": "string (URL)",
+      "name_artist": "string",
+      "download": "string (URL, optional)"
+    },
+    "playlist": {
+      "playlist_id": "int",
+      "playlist_name": "string",
+      "playlist_image": "string (URL)",
+      "name_artist": "string"
+    },
+    "album": {
+      "album_id": "int",
+      "album_name": "string",
+      "album_image": "string (URL)",
+      "name_artist": "string"
+    },
+    "music_video": {
+      "music_video_id": "int",
+      "music_video_name": "string",
+      "artist_id": "int",
+      "artist_name": "string",
+      "artist_image": "string (URL)",
+      "music_video_image": "string (URL)",
+      "music_video_time": "string",
+      "music_video_proposal_new": "int (0 or 1)",
+      "topic_id": "int"
+    },
+    "artist": {
+      "artist_id": "int",
+      "artist_name": "string",
+      "artist_image": "string (URL)"
+    },
+    "lyric": {
+      "lyric_text": "string",
+      "startMs": "int (milliseconds)"
+    }
+  }
+}
+
